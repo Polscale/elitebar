@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Élite M&E - Bar Restaurante | Holguín, Cuba</title>
+    <meta name="description" content="Bar Restaurante Élite M&E - Disfruta de cocteles, comida gourmet y ambiente exclusivo en Holguín, Cuba">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Añadido: tamaño fijo objetivo 140px con ajuste responsivo -->
+    <style>
+        /* Ancho objetivo con ajuste responsivo */
+        .nav-logo {
+            width: 140px;      /* ancho objetivo */
+            max-width: 100%;   /* se reduce si el contenedor es más pequeño */
+            height: auto;      /* mantiene la proporción */
+            display: block;
+        }
+
+        /* Ajuste para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .nav-logo {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="logoau.png" alt="Élite M&E Logo" class="nav-logo">
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Inicio</a></li>
+                <li><a href="#menu" class="nav-link">Menú</a></li>
+                <li><a href="#about" class="nav-link">Nosotros</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Élite M&E</h1>
+            <p class="hero-subtitle">Experiencia gastronómica única en Holguín</p>
+            <p class="hero-description">Descubre nuestros cocteles exclusivos, platos gourmet y ambiente sofisticado</p>
+            <a href="#menu" class="btn btn-primary">Ver Menú</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Sección de Menú -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Nuestro Menú</h2>
+            <p class="section-subtitle">Explora nuestra exquisita selección</p>
+
+            <!-- Filtros de Categoría -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">Todos</button>
+                <button class="filter-btn" data-category="desayunos">Desayunos</button>
+                <button class="filter-btn" data-category="cocteles">Cocteles</button>
+                <button class="filter-btn" data-category="entrantes">Entrantes</button>
+                <button class="filter-btn" data-category="principales">Platos Principales</button>
+                <button class="filter-btn" data-category="postres">Postres</button>
+                <button class="filter-btn" data-category="vinos">Vinos & Bebidas</button>
+            </div>
+
+            <!-- Grid de Productos del Menú -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Los items se generarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Detalles -->
+    <div class="modal" id="itemModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body">
+                <img src="" alt="" id="modalImage" class="modal-image">
+                <div class="modal-info">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDescription"></p>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <div class="modal-tags" id="modalTags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Nosotros -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title">Sobre Nosotros</h2>
+                    <p>En <strong>Élite M&E</strong> combinamos la tradición culinaria cubana con técnicas gastronómicas contemporáneas para crear experiencias memorables.</p>
+                    <p>Nuestro bar restaurante ofrece un ambiente sofisticado y acogedor, perfecto para cualquier ocasión especial.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-cocktail"></i>
+                            <h4>Cocteles Premium</h4>
+                            <p>Mixología de clase mundial</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <h4>Gastronomía Excepcional</h4>
+                            <p>Ingredientes frescos y locales</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-music"></i>
+                            <h4>Ambiente Único</h4>
+                            <p>Música en vivo y eventos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-image-placeholder">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="section-subtitle">Reserva tu mesa o escríbenos</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Holguín, Cuba</p>
+                            <p>20.88558, -76.26006</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+53 XX XXX XXXX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horario</h4>
+                            <p>Lun - Dom: 10:00 AM - 2:00 AM</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Nombre" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Teléfono">
+                        <textarea placeholder="Mensaje" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Élite M&E. Todos los derechos reservados.</p>
+            <p>Diseñado con <i class="fas fa-heart"></i> en Cuba</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Añadido: scroll automático a la primera foto del filtro seleccionado -->
+    <script>
+        (function() {
+            function scrollToElement(el, offset = -70) {
+                if (!el) return;
+                const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+
+            function findFirstVisibleMatch(container, category) {
+                if (!container) return null;
+                // Busca por atributo data-category igual, por clase .menu-item.<category> o por presencia parcial
+                const selectors = [
+                    `[data-category="${category}"]`,
+                    `.menu-item.${category}`,
+                    `[data-category*="${category}"]`
+                ];
+                for (const sel of selectors) {
+                    const candidates = Array.from(container.querySelectorAll(sel));
+                    const visible = candidates.find(el => el.offsetParent !== null);
+                    if (visible) return visible;
+                    if (candidates.length) return candidates[0];
+                }
+                return null;
+            }
+
+            // Attacha listeners a los botones de filtro
+            document.addEventListener('DOMContentLoaded', function() {
+                const buttons = document.querySelectorAll('.filter-btn');
+                const menuGrid = document.getElementById('menuGrid');
+                const menuSection = document.getElementById('menu');
+
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const category = btn.dataset.category;
+                        // Espera breve para que cualquier filtrado existente (en script.js) se aplique
+                        setTimeout(() => {
+                            if (!menuGrid) {
+                                // Si no hay grid, desplaza a la sección de menú como fallback
+                                scrollToElement(menuSection);
+                                return;
+                            }
+                            if (!category || category === 'all') {
+                                scrollToElement(menuSection);
+                                return;
+                            }
+                            const target = findFirstVisibleMatch(menuGrid, category) || menuGrid;
+                            scrollToElement(target);
+                        }, 150);
+                    });
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
