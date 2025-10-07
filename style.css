@@ -290,10 +290,28 @@ body {
 /* Category Filters */
 .category-filters {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 3rem;
+    gap: 0.6rem;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    background: rgba(26,26,26,0.95);
+    z-index: 100;
+}
+
+/* Clase añadida cuando debe fijarse */
+.category-filters.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26,26,26,0.98);
+    border-bottom: 1px solid rgba(212,175,55,0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    z-index: 1000;
 }
 
 .filter-btn {
@@ -753,10 +771,35 @@ body {
     }
 
     .category-filters {
-        flex-direction: column;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap !important;
+        gap: 0.5rem;
+        padding: 0.45rem 0.6rem;
+        top: 56px; /* debajo de la navbar */
+        background: rgba(26,26,26,0.95);
+        border-bottom: 1px solid rgba(212,175,55,0.08);
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0.3rem;
+        padding: 0.45rem 0.9rem;
+        white-space: nowrap;
+    }
+
+    /* Evita que el contenido del menú quede oculto bajo la barra sticky */
+    .menu-section {
+        padding-top: calc(56px + 64px + 1rem); /* navbar altura + filtros altura + extra */
     }
 }
 
+/* Ajustes para pantallas muy pequeñas */
 @media (max-width: 480px) {
     .menu-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -788,5 +831,17 @@ body {
     .menu-item-category {
         font-size: 0.8rem;
         padding: 0.25rem 0.45rem;
+    }
+
+    .category-filters {
+        top: 52px;
+        padding: 0.35rem 0.5rem;
+    }
+    .filter-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.9rem;
+    }
+    .menu-section {
+        padding-top: calc(52px + 64px + 1rem);
     }
 }

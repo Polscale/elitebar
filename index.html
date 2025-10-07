@@ -23,6 +23,76 @@
                 width: 100px;
             }
         }
+
+        /* Botones: sin fondo, solo borde sutil */
+        .filter-btn {
+            flex: 0 0 auto;
+            display: inline-block;
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-light);
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        /* Estado activo / hover con fondo dorado */
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Barra de categorías: versión sticky mejorada */
+        .category-filters {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            padding: 0.8rem 1rem;
+            background: transparent;
+            transition: all 0.3s ease;
+            position: sticky;
+            top: var(--navbar-height, 56px);
+            z-index: 1500; /* Mayor que el navbar */
+        }
+
+            .filters-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      touch-action: pan-x;
+    }
+    .filters-scroll::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    
+        .category-filters.is-sticky {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .category-filters {
+                padding: 0.6rem;
+                background: rgba(10, 10, 10, 0.85);
+            }
+        }
     </style>
 </head>
 <body>
@@ -58,22 +128,24 @@
         </div>
     </section>
 
+    <!-- Barra de categorías (fuera del contenedor para mejor comportamiento sticky) -->
+    <nav class="category-filters" id="categoryFilters">
+        <div class="container">
+            <button class="filter-btn active" data-category="all">Todos</button>
+            <button class="filter-btn" data-category="desayunos">Desayunos</button>
+            <button class="filter-btn" data-category="cocteles">Cocteles</button>
+            <button class="filter-btn" data-category="entrantes">Entrantes</button>
+            <button class="filter-btn" data-category="principales">Platos Principales</button>
+            <button class="filter-btn" data-category="postres">Postres</button>
+            <button class="filter-btn" data-category="vinos">Vinos & Bebidas</button>
+        </div>
+    </nav>
+
     <!-- Sección de Menú -->
     <section id="menu" class="menu-section">
         <div class="container">
             <h2 class="section-title">Nuestro Menú</h2>
             <p class="section-subtitle">Explora nuestra exquisita selección</p>
-
-            <!-- Filtros de Categoría -->
-            <div class="category-filters">
-                <button class="filter-btn active" data-category="all">Todos</button>
-                <button class="filter-btn" data-category="desayunos">Desayunos</button>
-                <button class="filter-btn" data-category="cocteles">Cocteles</button>
-                <button class="filter-btn" data-category="entrantes">Entrantes</button>
-                <button class="filter-btn" data-category="principales">Platos Principales</button>
-                <button class="filter-btn" data-category="postres">Postres</button>
-                <button class="filter-btn" data-category="vinos">Vinos & Bebidas</button>
-            </div>
 
             <!-- Grid de Productos del Menú -->
             <div class="menu-grid" id="menuGrid">
@@ -248,6 +320,32 @@
                 });
             });
         })();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            const categoryFilters = document.querySelector('.category-filters');
+            
+            // Establecer altura del navbar como variable CSS
+            const setNavbarHeight = () => {
+                const height = navbar.offsetHeight;
+                document.documentElement.style.setProperty('--navbar-height', `${height}px`);
+            };
+            
+            // Detectar scroll para añadir efectos visuales
+            const handleScroll = () => {
+                if (window.scrollY > 100) {
+                    categoryFilters.classList.add('is-sticky');
+                } else {
+                    categoryFilters.classList.remove('is-sticky');
+                }
+            };
+
+            setNavbarHeight();
+            window.addEventListener('resize', setNavbarHeight);
+            window.addEventListener('scroll', handleScroll);
+        });
     </script>
 </body>
 </html>
